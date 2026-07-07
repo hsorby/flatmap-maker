@@ -204,7 +204,7 @@ class MapMaker:
         # Our ``uuid`` depends on the source Git repository commit,
         # the contents of the map's manifest, mapmaker's version,
         # and the version of SCKAN we use for connectivity.
-        if (len(self.__sckan_provenance)
+        if ((options.get('ignoreSckan', False) or len(self.__sckan_provenance))
         and (repo := self.__manifest.git_repository) is not None):
             uuid_source = (repo.sha
                         + json.dumps(self.__manifest.raw_manifest, sort_keys=True)
